@@ -21,14 +21,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       # Package the domain folder ourselves: actions/upload-pages-artifact
       # skips dot-folders, which would drop .well-known.
       - name: Package site
         run: tar --dereference --hard-dereference -cvf "$RUNNER_TEMP/artifact.tar" -C domains/superbusy.work .
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         with:
           name: github-pages
           path: ${{ runner.temp }}/artifact.tar
@@ -42,4 +42,4 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
